@@ -1,0 +1,132 @@
+﻿@model Parameters
+@using TEC_AL_0002.Models;
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+	:root {
+		--azul-tiendas-daka: #1b3e90;
+		--text-input-field: #F7F7F7;
+		--hospital-green: #9be5aa;
+		--white: #ffffff;
+		--lg: 18px;
+	}
+
+	.container-button-Addusuarios {
+		display: flex;
+		justify-content: right;
+		width: 85%;
+	}
+
+	.button-Addusuarios {
+		text-decoration: none;
+		border-radius: 10px;
+		border: 1px solid var(--hospital-green);
+		color: var(--hospital-green);
+		background-color: var(--white);
+		font-size: var(--lg);
+		font-weight: bold;
+		margin-top: 2%;
+		margin-left: 1%;
+	}
+
+		.button-Addusuarios:hover {
+			background-color: var(--hospital-green);
+			color: var(--white);
+		}
+
+	.table-modific {
+		width: 80%;
+		margin-left: 5%;
+	}
+
+	.primary-buttom{
+		color: var(--hospital-green);
+		 border: 1px solid var(--hospital-green);
+		 text-decoration:none;
+		 border-radius: 8px;
+		font-size: var(--sm);
+		font-weight: bold;
+		margin-left: 5%;
+	}
+	.primary-buttom:hover{
+		color: var(--white);
+		background-color: var(--hospital-green);
+	}
+
+	.form-visualizar{
+		display: flex;
+		margin-bottom: 10px;
+			margin-top: 2px;
+	}
+	.num-caja{
+		margin-left: 5%;
+		
+	}
+	.input-netCss{
+		display: flex;
+		justify-content: right;
+	}
+	.dis-buttom{
+		display: flex;
+		padding: 0;
+	}
+
+</style>
+
+@*Botones parsa la parametrizacion de fecha, caja*@
+<form asp-controller="SqlServer" asp-action="Index" method="post" class="form-visualizar">
+	<input type="text" placeholder="..." asp-for="Departamento" class="num-caja">
+	<input type="submit" value="Buscar">
+</form>
+
+@*Enviar los datos al modelo PARAMERTS*@
+<table class="table table-modific">
+	<thead>
+		<tr>
+			<th>
+				Departamento
+			</th>
+			<th>
+				Ext
+			</th>
+			<th>
+				Nombre
+			</th>
+			<th>
+				Localidad
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@{
+			int contador = 0;
+		}
+
+		@*arreglar con css*@
+		@foreach (var item in ModelSqlSever.Departamento)
+		{
+			<tr>
+				<td>
+					@ModelSqlSever.Departamento[contador]
+				</td>
+				<td class="container-netCss">
+					@ModelSqlSever.Ext[contador]
+				</td>
+				<td class="container-netCss">
+					@ModelSqlSever.Nombre[contador]
+				</td>
+				<td class="container-netCss">
+					@ModelSqlSever.Localidad[contador]
+
+				</td>
+			</tr>
+			contador++;
+		}
+	</tbody>
+</table>
+
+
+
